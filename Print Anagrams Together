@@ -1,0 +1,31 @@
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        unordered_map<string,vector<string>> mp ;
+        vector<vector<string>> ans ;
+        for( auto it : string_list )
+        {
+            string check = it ;
+            sort( check.begin() , check.end() ) ;
+            if( mp.find(check) != mp.end() )
+            {
+               mp[check].push_back(it) ;
+            }
+            else
+            {
+                mp[check] ;
+                mp[check].push_back(it) ;
+            }
+        }
+        int i = 0 ; 
+        for( auto it : mp  )
+        {
+            vector<string>temp ;
+             for( auto iti : it.second )
+             temp.push_back( iti ) ;
+             ans.push_back( temp) ;
+        }
+        return ans ;
+    }
+};
